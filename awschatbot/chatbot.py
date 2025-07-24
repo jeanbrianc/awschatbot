@@ -10,6 +10,7 @@ def create_agent() -> "AgentExecutor":
     tools = [
         aws_tools.count_public_s3_buckets,
         aws_tools.list_s3_buckets,
+
         aws_tools.describe_bucket_contents,
         aws_tools.ec2_instance_type_by_ip,
         aws_tools.describe_user_permissions,
