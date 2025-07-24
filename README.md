@@ -7,6 +7,7 @@ This project provides a simple natural language chatbot that can answer question
 The chatbot exposes custom tools backed by boto3 for:
 
 - Counting the number of S3 buckets that are publicly accessible.
+- Listing all S3 buckets in the account.
 - Listing example objects in a specific S3 bucket.
 - Finding the instance type of an EC2 instance by IP address.
 - Listing IAM policies attached to a given user.
@@ -18,7 +19,7 @@ These tools are combined with an OpenAI chat model via LangChain's function call
 1. Install dependencies (requires Python 3.12 or later):
 
 ```bash
-pip install boto3 langchain openai
+pip install -r requirements.txt
 ```
 
 2. Export your AWS credentials and an OpenAI API key:
@@ -38,6 +39,7 @@ python -m awschatbot.chatbot
 You can then ask questions such as:
 
 - "How many S3 buckets are exposed to the public?"
+- "List all S3 buckets in the account."
 - "What data does the S3 bucket my-bucket hold?"
 - "What is the size of the EC2 instance with IP 1.2.3.4?"
 - "What permissions does the user alice have?"

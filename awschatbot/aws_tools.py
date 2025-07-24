@@ -42,6 +42,21 @@ def count_public_s3_buckets() -> str:
     return str(len(public_buckets))
 
 
+@tool("list_s3_buckets")
+def list_s3_buckets() -> str:
+    """Return a list of all S3 buckets in the account."""
+    s3 = _s3_client()
+    try:
+        response = s3.list_buckets()
+    except (BotoCoreError, ClientError) as e:
+        return f"Failed to list buckets: {e}"
+
+    bucket_names = [b["Name"] for b in response.get("Buckets", [])]
+    if not bucket_names:
+        return "No buckets found."
+    return "\n".join(bucket_names)
+
+
 @tool("describe_bucket_contents")
 def describe_bucket_contents(bucket: str) -> str:
     """Return a short description of the objects stored in the S3 bucket."""
